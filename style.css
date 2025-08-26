@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Minecraftia', sans-serif;
+  font-family: 'Arial', sans-serif;
   background: #1e1e1e;
   color: #fff;
   text-align: center;
@@ -31,7 +31,8 @@ main {
 }
 
 .server-info h2,
-.ip h2 {
+.ip h2,
+.status h2 {
   color: #f4d35e;
 }
 
@@ -66,6 +67,20 @@ button {
 
 button:hover {
   background: #ffcc00;
+}
+
+.status {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #2a2a2a;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+#uptime {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 footer {
