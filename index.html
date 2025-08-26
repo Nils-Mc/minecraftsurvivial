@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Survival Server</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Minecraft Survival Logo" class="logo">
+    <h1>Minecraft Survival</h1>
+    <p class="motd">✦ Baue • Kämpfe • Überlebe ✦</p>
+  </header>
+
+  <main>
+    <section class="server-info">
+      <h2>Über den Server</h2>
+      <p>Erlebe die ultimative Survival-Erfahrung mit einer aktiven Community, spannenden Events und echtem Minecraft-Feeling.</p>
+      <ul>
+        <li>⚔ Keine Pay2Win-Features</li>
+        <li>🔥 Regelmäßige Events</li>
+        <li>🤝 Freundliche Community</li>
+      </ul>
+    </section>
+
+    <section class="ip">
+      <h2>Server-IP</h2>
+      <p><span class="highlight">DeinServer.de</span></p>
+      <button onclick="copyIP()">📋 Kopiere IP</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Minecraft Survival Server | Made with ❤</p>
+  </footer>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("DeinServer.de");
+      alert("Server-IP kopiert!");
+    }
+  </script>
+</body>
+</html>
