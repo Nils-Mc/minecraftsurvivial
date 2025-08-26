@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <img src="assets/logo.webp" alt="Minecraft Survival Logo" class="logo">
+    <img src="assets/logo.png" alt="Minecraft Survival Logo" class="logo">
     <h1>Minecraft Survival</h1>
     <p class="motd">✦ Baue • Kämpfe • Überlebe ✦</p>
   </header>
@@ -26,8 +26,13 @@
 
     <section class="ip">
       <h2>Server-IP</h2>
-      <p><span class="highlight">DeinServer.de</span></p>
+      <p><span class="highlight">minecraftsurvivial.aternos.me:49245</span></p>
       <button onclick="copyIP()">📋 Kopiere IP</button>
+    </section>
+
+    <section class="status">
+      <h2>Server Status</h2>
+      <div id="uptime">⏳ Lade Serverstatus...</div>
     </section>
   </main>
 
@@ -36,10 +41,38 @@
   </footer>
 
   <script>
+    // IP in Zwischenablage kopieren
     function copyIP() {
-      navigator.clipboard.writeText("DeinServer.de");
+      navigator.clipboard.writeText("minecraftsurvivial.aternos.me:49245");
       alert("Server-IP kopiert!");
     }
+
+    // Serverstatus abrufen
+    async function fetchStatus() {
+      try {
+        const response = await fetch("https://api.mcsrvstat.us/2/minecraftsurvivial.aternos.me:49245");
+        const data = await response.json();
+
+        const uptimeDiv = document.getElementById("uptime");
+
+        if (data.online) {
+          uptimeDiv.innerHTML =
+            "🟢 <b>Online</b><br>" +
+            "🌍 Spieler: " + data.players.online + " / " + data.players.max + "<br>" +
+            "📜 MOTD: " + data.motd.clean.join(" ");
+          uptimeDiv.style.color = "#4CAF50";
+        } else {
+          uptimeDiv.innerHTML = "🔴 <b>Server offline</b>";
+          uptimeDiv.style.color = "#ff4c4c";
+        }
+      } catch (e) {
+        document.getElementById("uptime").innerHTML = "⚠️ Fehler beim Abrufen des Status";
+      }
+    }
+
+    // alle 30 Sekunden neu abrufen
+    fetchStatus();
+    setInterval(fetchStatus, 30000);
   </script>
 </body>
 </html>
