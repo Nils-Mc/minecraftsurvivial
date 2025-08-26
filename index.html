@@ -15,6 +15,7 @@
     button { background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
     button:hover { background-color: #45a049; }
     footer { text-align: center; padding: 10px; background: #222; color: white; }
+    iframe { width: 100%; height: 120px; border: none; border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -33,10 +34,11 @@
 
     <section class="status">
       <h2>Server Status</h2>
-      <div id="uptime">⏳ Lade Serverstatus...</div>
+      <!-- Offizielles Aternos Widget -->
+      <iframe src="https://aternos.org/server/minecraftsurvivial/status/"></iframe>
     </section>
 
-    <section class="server-info" id="serverInfo" style="display:none;">
+    <section class="server-info" id="serverInfo">
       <h2>Über den Server</h2>
       <p>Erlebe die ultimative Survival-Erfahrung mit einer aktiven Community, spannenden Events und echtem Minecraft-Feeling.</p>
       <ul>
@@ -56,40 +58,6 @@
       navigator.clipboard.writeText("minecraftsurvivial.aternos.me:49245");
       alert("Server-IP kopiert!");
     }
-
-    async function fetchStatus() {
-      try {
-        const response = await fetch("https://mcapi.us/server/status?ip=minecraftsurvivial.aternos.me&port=49245");
-        const data = await response.json();
-
-        const uptimeDiv = document.getElementById("uptime");
-        const serverInfo = document.getElementById("serverInfo");
-
-        if (data.online) {
-          const motdText = data.motd || "Keine MOTD verfügbar";
-          const playersOnline = data.players.now || 0;
-          const playersMax = data.players.max || 0;
-
-          uptimeDiv.innerHTML =
-            "🟢 <b>Online</b><br>" +
-            "🌍 Spieler: " + playersOnline + " / " + playersMax + "<br>" +
-            "📜 MOTD: " + motdText;
-          uptimeDiv.style.color = "#4CAF50";
-          serverInfo.style.display = "block"; // Beschreibung nur online
-        } else {
-          uptimeDiv.innerHTML = "🔴 <b>Server offline</b>";
-          uptimeDiv.style.color = "#ff4c4c";
-          serverInfo.style.display = "none";
-        }
-      } catch (e) {
-        document.getElementById("uptime").innerHTML = "⚠️ Fehler beim Abrufen des Status";
-        document.getElementById("serverInfo").style.display = "none";
-      }
-    }
-
-    fetchStatus();
-    setInterval(fetchStatus, 30000);
   </script>
 </body>
 </html>
-
